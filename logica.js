@@ -50,7 +50,7 @@ async function imprimePersonaSalario(id){
 	try{
 		persona = await getEmpleado(id);
 		salario = await getSalario(persona);
-		console.log(persona.id+" "+persona.name+" "+salario);			
+		console.log(`La persona llamada ${persona.name} cobra ${salario}.`);			
 	}catch (err) {
 		console.log(err.message);
 	}

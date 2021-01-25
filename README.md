@@ -1,3 +1,3 @@
-# Asyn-Await Nivell1-Exercici1
+# Asyn-Await Nivell1-Exercici2
 
-Retomamos el último ejercicio de promesas y lo async/awaitamos.
+Imprimimos el nombre y el sueldo.
