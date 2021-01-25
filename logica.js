@@ -20,18 +20,14 @@ let salaries = [{
     salary: 2000
 }];
 
-//simplifico la getEmpleado, que en el primer ejercicio
-//me vine muy arriba. Ahora simplemente devuelve el 
-//objeto empleado asociado al id que le pasen
 let getEmpleado = (id)=>{
 	let empleado =new Promise((resolve,reject) =>{	
 		employees.forEach(employe=>{
 			if(employe.id==id){	
 				resolve(employe);				
 			}
-		});
-		
-		reject("El id no aparece en el registro de empleados");	
+		});		
+		reject(new Error("El id no aparece en el registro de empleados"));	
 	});
 	return empleado;
 }
@@ -41,13 +37,24 @@ let getSalario =(empleado)=>{
 		salaries.forEach(mount=>{
 			if(mount.id==empleado.id){
 					resolve(mount.salary);
-				}
-			});
-		reject("Esta personita no cobra");	
+			}
+		});
+		reject(new Error("Esta personita no cobra"));	
 	});
 	return salario;
 }
 
-//Te va a devolver el sueldo de alguien o los errores que se encuentre
-//al buscarlo entre los empleados y entre los salarios.
-getEmpleado(1).then(getSalario).then(console.log).catch(console.log);
+
+async function imprimePersonaSalario(id){
+	let persona="";
+	try{
+		persona = await getEmpleado(id);
+		salario = await getSalario(persona);
+		console.log(persona.id+" "+persona.name+" "+salario);			
+	}catch (err) {
+		console.log(err.message);
+	}
+				
+}
+
+imprimePersonaSalario(1);
